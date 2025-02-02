@@ -1,0 +1,32 @@
+@use "variables" as *;
+
+header {
+    nav {
+        &.nav-links {
+            display: flex;
+
+            a {
+                color: $color-orange;
+                display: inline-block;
+                width: 2em;
+                height: 2em;
+
+                &:last-child {
+                    margin-left: auto;
+                }
+
+                &:hover {
+                    color: $color-pink !important;
+                }
+            }
+        }
+    }
+
+    #nav-links-info {
+        color: $color-ash !important;
+        font-size: .8em;
+        font-style: italic;
+        min-height: 2em;
+        margin-top: .4em;
+    }
+}

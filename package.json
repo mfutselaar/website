@@ -1,0 +1,19 @@
+{
+    "name": "website",
+    "version": "1.0.0",
+    "description": "[![CI](https://github.com/silverstripe/silverstripe-installer/actions/workflows/ci.yml/badge.svg)](https://github.com/silverstripe/silverstripe-installer/actions/workflows/ci.yml) [![Silverstripe supported module](https://img.shields.io/badge/silverstripe-supported-0071C4.svg)](https://www.silverstripe.org/software/addons/silverstripe-commercially-supported-module-list/)",
+    "main": "index.js",
+    "scripts": {
+        "dev": "sass --watch --update --style=expanded theme/scss:theme/css",
+        "build": "sass --no-source-map --style=compressed theme/scss:theme/css"
+    },
+    "repository": {
+        "type": "git",
+        "url": "http://gitea.ragnar.network/mathijs/website.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "sass": "^1.83.4"
+    }
+}
