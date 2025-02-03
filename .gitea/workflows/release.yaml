@@ -22,6 +22,6 @@ jobs:
             - name: Build image
               run: docker build -t ragnar.network:3000/${{ gitea.repository_owner }}/${{ gitea.event.repository.name }}:latest .
             - name: Push image
-              run: docker push ragnar.network:3000/${{ gitea.repository_owner }}/{{ gitea.event.repository.name }}:latest
+              run: docker push ragnar.network:3000/${{ gitea.repository_owner }}/${{ gitea.event.repository.name }}:latest
             - name: Cleanup old images
               run: docker image prune -f
