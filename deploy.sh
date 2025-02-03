@@ -9,7 +9,7 @@ commit=$(git rev-parse main)
 
 git commit -m "${commit}"
 
-#git push -u github cloudflare:main
+git push -u github cloudflare:main
 
 git checkout main
 git stash pop
