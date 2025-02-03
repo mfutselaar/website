@@ -14,3 +14,23 @@ h1 {
     font-weight: lighter;
     font-size: 3rem;
 }
+
+h2 {
+    font-weight: normal;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: $color-blue-2;
+}
+
+h3 {
+    color: $color-violet;
+    opacity: .8;
+    font-size: 1.5rem;
+    font-weight: normal;
+    margin-bottom: 1rem;
+}
+
+p {
+    font-size: 1em;
+    margin-bottom: 1rem;
+}

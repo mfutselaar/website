@@ -1,4 +1,4 @@
 /build
 /node_modules
 /.idea
-.DS_Ignore
+.DS_Store

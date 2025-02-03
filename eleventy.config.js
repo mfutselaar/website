@@ -9,6 +9,8 @@ export default function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy("src/js");
     eleventyConfig.addPassthroughCopy("src/img");
 
+    eleventyConfig.ignores.add("src/index.html");
+
     return {
         dir: {
             input: "src",
