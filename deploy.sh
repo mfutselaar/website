@@ -2,7 +2,7 @@
 
 git stash
 git checkout cloudflare
-git checkout main src package.json package-lock.json eleventy.config.js
+git checkout main src package.json package-lock.json eleventy.config.js deploy.sh
 git add .
 
 commit=$(git rev-parse main)
