@@ -52,4 +52,4 @@ COPY httpd.conf .
 COPY ./build .
 
 # Run busybox httpd
-CMD ["/busybox-httpd", "-f", "-v", "-p", "80", "-c", "httpd.conf"]
+CMD ["/busybox-httpd", "-f", "-v", "-p", "3000", "-c", "httpd.conf"]
