@@ -1,0 +1,120 @@
+@use "variables" as *;
+
+.img {
+    &.border {
+        border: 2px solid $color-white !important;
+    }
+}
+
+.align-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text-black-0 {
+    color: $color-black-0;
+}
+
+.text-black-1 {
+    color: $color-black-1;
+}
+
+.text-black-2 {
+    color: $color-black-2;
+}
+
+.text-black-3 {
+    color: $color-black-3;
+}
+
+.text-black-4 {
+    color: $color-black-4;
+}
+
+.text-black-5 {
+    color: $color-black-5;
+}
+
+.text-black-6 {
+    color: $color-black-6;
+}
+
+.text-white {
+    color: $color-white;
+}
+
+.text-green {
+    color: $color-green;
+}
+
+.text-green-2 {
+    color: $color-green-2;
+}
+
+.text-pink {
+    color: $color-pink;
+}
+
+.text-orange {
+    color: $color-orange;
+}
+
+.text-orange-2 {
+    color: $color-orange-2;
+}
+
+.text-gray {
+    color: $color-gray;
+}
+
+.text-gray-2 {
+    color: $color-gray-2;
+}
+
+.text-gray-3 {
+    color: $color-gray-3;
+}
+
+.text-blue-2 {
+    color: $color-blue-2;
+}
+
+.text-violet {
+    color: $color-violet;
+}
+
+.text-red {
+    color: $color-red;
+}
+
+.text-aqua {
+    color: $color-aqua;
+}
+
+.text-ash {
+    color: $color-ash;
+}
+
+.text-teal {
+    color: $color-teal;
+}
+
+.text-yellow {
+    color: $color-yellow;
+}
+
+// Opacity Utility Classes (Examples - extend as needed)
+.text-opacity-50 {
+    opacity: 0.5;
+}
+
+.text-opacity-75 {
+    opacity: 0.75;
+}
+
+.img {
+    &.has-border {
+        border: 2px solid $color-white;
+    }
+}

@@ -1,0 +1,14 @@
+@use "variables" as *;
+
+body {
+    background-color: $color-black-4;
+}
+
+header {
+    padding: 1em 2em;
+    margin-top: 1em;
+}
+
+main {
+    padding: 1em 2em;
+}

@@ -1,0 +1,27 @@
+@use "_reset.css";
+@use "mixins";
+@use "typography";
+@use "components";
+@use "icons";
+@use "utils";
+@use "base";
+
+.text-block {
+    h2:first-child {
+        margin-top: -.25em;
+    }
+}
+
+.personal-info {
+    display: flex;
+    flex-direction: row;
+
+    .profile-photo {
+        width: 320px;
+        margin-right: 3em;
+        align-self: flex-start;
+    }
+}
+
+.professional-info {
+}

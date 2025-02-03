@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Mathijs Futselaar - Sr. (Web)Developer</title>
+    <link rel="stylesheet" href="/css/main.css"/>
+</head>
+<body>
+<header>
+    <h1>Mathijs Futselaar - Sr. (Web)Developer</h1>
+    <nav class="nav-socials">
+        <a href="https://www.linkedin.com/in/mathijsfutselaar/" title="My LinkedIn profile, this would be the #1 way to reach out to me." class="mdi linkedin"></a>
+        <a href="https://github.com/mfutselaar" title="My GitHub repository. To be honest, there is not much to find here as I don't really work for or on opensource projects and for personal things I have my self-hosted Gitea repository." class="mdi github"></a>
+        <a href="mailto:mathijs@matttt.nl" title="Ah, good old e-mail. Chances are you end up in my spam box, but you can always send a message on LinkedIn if I don't reply to your e-mail." class="mdi email"></a>
+        <a href="#content" title="₍˄·͈༝·͈˄₎◞" class="mdi cat"></a>
+    </nav>
+    <div id="nav-socials-info"></div>
+    <nav class="nav-pages">
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="/" class="nav-link {% if page.url == "/" or page.url == "/index.html" %}active{% endif %}">Personal</a>
+            </li>
+            <li class="nav-item">
+                <a href="/professional.html" class="nav-link {% if page.url == "/professional.html" %}active{% endif %}">Professional</a>
+            </li>
+            <li class="nav-item">
+                <a href="/projects.html" class="nav-link {% if page.url == "/projects.html" %}active{% endif %}">Projects</a>
+            </li>
+        </ul>
+        <div class="availability text-green">Available for work<span class="text-yellow">!</span></div>
+    </nav>
+</header>
+<main>
+    <a id="content"></a>
+    {{ content | safe }}
+</main>
+<script src="/js/script.js"></script>
+</body>
+</html>
