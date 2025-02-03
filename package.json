@@ -1,11 +1,12 @@
 {
     "name": "website",
     "version": "1.0.0",
-    "description": "[![CI](https://github.com/silverstripe/silverstripe-installer/actions/workflows/ci.yml/badge.svg)](https://github.com/silverstripe/silverstripe-installer/actions/workflows/ci.yml) [![Silverstripe supported module](https://img.shields.io/badge/silverstripe-supported-0071C4.svg)](https://www.silverstripe.org/software/addons/silverstripe-commercially-supported-module-list/)",
+    "type": "module",
     "main": "index.js",
     "scripts": {
-        "dev": "sass --watch --update --style=expanded theme/scss:theme/css",
-        "build": "sass --no-source-map --style=compressed theme/scss:theme/css"
+        "dev": "concurrently \"sass --watch --update --style=expanded src/scss:src/css\" \"browser-sync start --server 'src' --files 'src/**/*' --ignore 'src/scss/**/*'\"",
+        "sass": "sass --watch --update --style=expanded src/scss:src/css",
+        "build": "rm -rf build && npx @11ty/eleventy && sass --no-source-map --style=compressed src/scss:build/css"
     },
     "repository": {
         "type": "git",
@@ -14,6 +15,14 @@
     "author": "",
     "license": "ISC",
     "devDependencies": {
-        "sass": "^1.83.4"
+        "browser-sync": "^3.0.3",
+        "concurrently": "^9.1.2",
+        "sass": "^1.83.4",
+        "serve": "^14.2.4"
+    },
+    "dependencies": {
+        "@11ty/eleventy": "^3.0.0",
+        "@11ty/eleventy-navigation": "^0.3.5",
+        "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0"
     }
 }

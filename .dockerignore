@@ -1,4 +1,6 @@
 .idea
 .git
 Dockerfile
-Dockerfile.dev
+.editorconfig
+src/
+node_modules/

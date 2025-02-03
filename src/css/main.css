@@ -132,9 +132,8 @@ header #nav-links-info {
   color: #737c73 !important;
   font-size: 0.8em;
   font-style: italic;
-  min-height: 3em;
+  min-height: 2em;
   margin-top: 0.4em;
-  text-wrap: pretty;
 }
 
 .mdi {

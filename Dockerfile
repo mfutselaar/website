@@ -1,13 +1,55 @@
-FROM php:8.3-apache
+ARG ALPINE_VERSION=3.18.4
 
-RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+FROM alpine:${ALPINE_VERSION} AS builder
 
-RUN apt update && apt install -y libxml2-dev zlib1g-dev libpng-dev
+ARG BUSYBOX_VERSION=1.36.1
 
-RUN a2enmod rewrite
+# Install all dependencies required for compiling busybox
+RUN apk add gcc musl-dev make perl
 
-RUN docker-php-ext-install mysqli dom intl simplexml session xml gd pdo pdo_mysql
+# Download busybox sources
+RUN wget https://busybox.net/downloads/busybox-${BUSYBOX_VERSION}.tar.bz2 \
+  && tar xf busybox-${BUSYBOX_VERSION}.tar.bz2 \
+  && mv /busybox-${BUSYBOX_VERSION} /busybox
 
-COPY --chown=www-data:www-data . /var/www/html
+WORKDIR /busybox
 
-EXPOSE 80
+# Copy the busybox build config (limited to httpd)
+COPY .config .
+
+# Compile
+RUN make && ./make_single_applets.sh
+
+# Create a non-root user to own the files and run our server
+RUN adduser -D static
+
+# Switch to the scratch image
+FROM scratch
+
+EXPOSE 3000
+
+# Copy over the user
+COPY --from=builder /etc/passwd /etc/passwd
+
+# Copy the static binary
+COPY --from=builder /busybox/busybox_HTTPD /busybox-httpd
+
+# Use our non-root user
+USER static
+WORKDIR /home/static
+
+# Uploads a blank default httpd.conf
+# This is only needed in order to set the `-c` argument in this base file
+# and save the developer the need to override the CMD line in case they ever
+# want to use a httpd.conf
+COPY httpd.conf .
+
+# Copy the static website
+# Use the .dockerignore file to control what ends up inside the image!
+# NOTE: Commented out since this will also copy the .config file
+# COPY . .
+
+COPY ./build .
+
+# Run busybox httpd
+CMD ["/busybox-httpd", "-f", "-v", "-p", "3000", "-c", "httpd.conf"]
