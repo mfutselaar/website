@@ -11,7 +11,7 @@
     <h1>Mathijs Futselaar - Sr. (Web)Developer</h1>
     <nav class="nav-socials">
         <a href="https://www.linkedin.com/in/mathijsfutselaar/" title="My LinkedIn profile, this would be the #1 way to reach out to me." class="mdi linkedin"></a>
-        <a href="https://github.com/mfutselaar" title="My GitHub repository. To be honest, there is not much to find here as I don't really work for or on opensource projects and for personal things I have my self-hosted Gitea repository." class="mdi github"></a>
+        <a href="https://github.com/mfutselaar" title="My GitHub repository. To be honest, there is not much to find here as I don't really work for or on opensource projects and for personal things I have my self-hosted Gitea repository. The source of this website is available on here though!" class="mdi github"></a>
         <a href="mailto:mathijs@matttt.nl" title="Ah, good old e-mail. Chances are you end up in my spam box, but you can always send a message on LinkedIn if I don't reply to your e-mail." class="mdi email"></a>
         <a href="/cats.html" title="₍˄·͈༝·͈˄₎◞" class="mdi cat"></a>
     </nav>
@@ -25,7 +25,11 @@
                 <a href="/professional.html" class="nav-link {% if page.url == "/professional.html" %}active{% endif %}">Professional</a>
             </li>
         </ul>
-        <div class="availability text-green">Available for work<span class="text-yellow">!</span></div>
+        {% if settings.available %}
+            <div class="availability text-green">Available for work<span class="text-yellow">!</span></div>
+        {% else %}
+            <div class="availability text-red">Not available for work<span class="text-orange">.</span></div>
+        {% endif %}
     </nav>
 </header>
 <main>
