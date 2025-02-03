@@ -14,7 +14,7 @@ export default function(eleventyConfig) {
     return {
         dir: {
             input: "src",
-            output: "dist",
+            output: "build",
             layouts: "_layouts",
             data: "_data",
             includes: "_includes"

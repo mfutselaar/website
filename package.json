@@ -6,8 +6,7 @@
     "scripts": {
         "dev": "concurrently \"sass --watch --update --style=expanded src/scss:src/css\" \"browser-sync start --server 'src' --files 'src/**/*' --ignore 'src/scss/**/*'\"",
         "sass": "sass --watch --update --style=expanded src/scss:src/css",
-        "build": "rm -rf build && npx @11ty/eleventy && sass --no-source-map --style=compressed src/scss:dist/css",
-        "deploy": "git push -u github cloudflare:main"
+        "build": "rm -rf build && npx @11ty/eleventy && sass --no-source-map --style=compressed src/scss:build/css"
     },
     "repository": {
         "type": "git",
