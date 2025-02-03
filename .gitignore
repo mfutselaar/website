@@ -7,3 +7,4 @@
 /.graphql-generated/
 /public/_graphql/
 /.idea
+/node_modules
