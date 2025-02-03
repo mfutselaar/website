@@ -4,7 +4,7 @@ git stash
 git checkout cloudflare
 remove=$(ls !(node_modules))
 rm -rf $remove
-git checkout main src package.json package-lock.json eleventy.config.js
+git checkout main src package.json package-lock.json eleventy.config.js README.md
 git add .
 
 commit=$(git rev-parse main)
