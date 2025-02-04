@@ -75,6 +75,24 @@ header {
     }
 }
 
+@media(max-width: $width-tablet) {
+    header {
+        nav {
+            &.nav-pages {
+                display: flex;
+                flex-flow: column nowrap;
+                align-items: center;
+
+                div.availability {
+                    margin-top: 1em;
+                    text-align: center;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
 a {
     color: $color-ash;
 
