@@ -3,7 +3,7 @@ layout: "base.njk"
 permalink: "/index.html"
 ---
 
-<section class="personal-info">
+<section class="content personal-info">
     <img src="/img/mathijs.jpg" alt="Mathijs Futselaar" class="profile-photo img has-border"/>
     <div class="text-block">
         <h2>Personal</h2>

@@ -5,10 +5,22 @@ body {
 }
 
 header {
-    padding: 1em 2em;
-    margin-top: 1em;
+    padding: .5em 1em;
 }
 
 main {
-    padding: 1em 2em;
+    padding: .5em 1em;
+}
+
+
+/** Fullscreen **/
+@media(min-width: $width-tablet) {
+    header {
+        padding: 1em 2em;
+        margin-top: 1em;
+    }
+
+    main {
+        padding: 1em 2em;
+    }
 }

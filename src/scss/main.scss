@@ -1,25 +1,63 @@
 @use "_reset.css";
-@use "mixins";
 @use "typography";
 @use "components";
+@use "variables" as *;
 @use "icons";
 @use "utils";
 @use "base";
 
-.text-block {
-    h2:first-child {
-        margin-top: -.25em;
+.content {
+    @media(min-width: $width-tablet) {
+        h2:first-child {
+            margin-top: -.25em;
+        }
+    }
+
+    @media(max-width: $width-tablet) {
+        margin-top: 1em;
+        text-align:justify;
     }
 }
 
 .personal-info {
-    display: flex;
-    flex-direction: row;
+    display: block;
 
-    .profile-photo {
-        width: 320px;
-        margin-right: 3em;
-        align-self: flex-start;
+    @media(min-width: $width-tablet) {
+        display: flex !important;
+        align-items: flex-start;
+    }
+
+    @media(max-width: $width-tablet) {
+        .text-content {
+            position: relative;
+            top: -.5em;
+        }
+
+        .profile-photo {
+            width: 128px;
+            float: left;
+            margin-right: 1em;
+        }
+    }
+
+    @media(min-width: $width-tablet) {
+        .profile-photo {
+            width: 240px;
+            margin-right: 1.5em;
+            flex-shrink: 0;
+        }
+    }
+
+    @media(min-width: $width-desktop) {
+        .text-content {
+            margin-top: -.1em;
+        }
+
+        .profile-photo {
+            width: 320px;
+            margin-right: 1.5em;
+            flex-shrink: 0;
+        }
     }
 }
 

@@ -2,7 +2,7 @@
 layout: "base.njk"
 permalink: "/professional.html"
 ---
-<section class="professional-info">
+<section class="content professional-info">
     <div class="text-block">
         <h2>Professional</h2>
         <p>I've been dabbling in software development since 1992-ish, where I started out with Basic, and eventually

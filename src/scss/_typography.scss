@@ -10,27 +10,53 @@ h1, h2, h3, h4, h5, h6, p, li, td, th {
     color: $color-white;
 }
 
+
 h1 {
     font-weight: lighter;
-    font-size: 3rem;
 }
 
 h2 {
     font-weight: normal;
-    font-size: 2rem;
-    margin-bottom: 1rem;
     color: $color-blue-2;
+    margin-bottom: .2em;
 }
 
 h3 {
     color: $color-violet;
     opacity: .8;
-    font-size: 1.5rem;
     font-weight: normal;
-    margin-bottom: 1rem;
 }
 
 p {
     font-size: 1em;
     margin-bottom: 1rem;
+    line-height: 1.7em;
+}
+
+/** Fullscreen **/
+@media(min-width: $width-desktop) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+}
+
+@media(min-width: $width-tablet) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0 !important;
+    }
 }
