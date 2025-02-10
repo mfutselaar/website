@@ -4,7 +4,7 @@
     "type": "module",
     "main": "index.js",
     "scripts": {
-        "dev": "concurrently \"sass --watch --update --style=expanded src/scss:src/css\" \"browser-sync start --server 'src' --files 'src/**/*' --ignore 'src/scss/**/*'\"",
+        "dev": "concurrently \"sass --watch --update --style=expanded src/scss:src/css\" \"npx @11ty/eleventy --serve\"",
         "sass": "sass --watch --update --style=expanded src/scss:src/css",
         "build": "rm -rf build && npx @11ty/eleventy && sass --no-source-map --style=compressed src/scss:build/css",
         "deploy": "/bin/sh deploy.sh"
