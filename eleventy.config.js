@@ -7,7 +7,6 @@ export default function (eleventyConfig) {
     eleventyConfig.addPlugin(syntaxHighlight);
 
     eleventyConfig.addPassthroughCopy("src/js");
-    eleventyConfig.addPassthroughCopy("src/css");
     eleventyConfig.addPassthroughCopy("src/img");
 
     eleventyConfig.ignores.add("src/index.html");
