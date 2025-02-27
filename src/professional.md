@@ -1,6 +1,5 @@
 ---
 layout: "base.njk"
-permalink: "/professional.html"
 ---
 <section class="content professional-info">
     <div class="text-block">
