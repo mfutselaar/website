@@ -156,19 +156,6 @@ export default async function (eleventyConfig) {
         })
     })
 
-    eleventyConfig.addCollection("dateTree", function(collectionApi) {
-        const posts = collectionApi.getFilteredByGlob("src/_posts/*.md")
-        const ret = {}
-
-        for (const post of posts) {
-            const month = post.data.date.toLocaleDateString("en-US", {month: "2-digit"})
-            const year = post.data.date.toLocaleDateString("en-US", {year: "numeric"})
-            const day = post.data.date.toLocaleDateString("en-US", {day: "2-digit"})
-
-            ret[year][month][day] = true;
-        }
-    })
-
     eleventyConfig.addCollection("postsByYear", function (collectionApi) {
         const posts = collectionApi.getFilteredByGlob("src/_posts/*.md")
         const years = new Set()
