@@ -19,12 +19,17 @@
     "devDependencies": {
         "browser-sync": "^3.0.3",
         "concurrently": "^9.1.2",
+        "prismjs": "^1.29.0",
         "sass": "^1.83.4",
         "serve": "^14.2.4"
     },
     "dependencies": {
         "@11ty/eleventy": "^3.0.0",
         "@11ty/eleventy-navigation": "^0.3.5",
-        "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0"
+        "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
+        "@prettier/plugin-pug": "^3.2.1",
+        "eleventy-plugin-reading-time": "^0.0.1",
+        "fast-glob": "^3.3.3",
+        "html-minifier-terser": "^7.2.0"
     }
 }

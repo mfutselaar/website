@@ -1,0 +1,46 @@
+---
+layout: base.njk
+---
+<section class="content blog">
+    <div class="text-block">
+        <div class="wrapper">
+            <article>
+                <h3>Blog - {{ title }}</h3>
+                <div class="text-content">
+                    {{ content | safe }}
+                </div>
+            </article>
+            <div class="information-block">
+                {% if tags %}
+                <ul class="tags">
+                    <li>Tags:</li>
+                    {% for tag in tags %}
+                    <li><a href="/blog/tags/{{ tag }}">{{ tag | translateTag }}</a></li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <div>
+                    <span class="text-orange-2">Date:</span>
+                    <time class="text-opacity-50">{{ date | dateReadable('d') }}</time>
+                </div>
+                <div>
+                    <span class="text-orange-2">Reading time:</span>
+                    <span class="text-opacity-50">{{ content | readingTime }}</span>
+                </div>
+                <br>
+                <span class="source-icon mdi source-branch"></span> <span><a
+                    href="https://github.com/mfutselaar/website/tree/main/src{{ origin }}">View on GitHub</a></span>
+            </div>
+        </div>
+        <nav class="singular-blog-navigation">
+            <ul>
+                <li><a href="/blog">Go back to the blog index</a></li>
+                <li><a href="/blog/{{ date | datePart('y') }}/{{ date | datePart('m') }}/{{ date | datePart('d') }}">More
+                    from this date ({{ date | dateReadable('d') }})</a></li>
+                <li><a href="/blog/{{ date | datePart('y') }}/{{ date | datePart('m') }}">More from this month ({{ date
+                    | dateReadable('m') }})</a></li>
+                <li><a href="/blog/{{ date | datePart('y') }}">More from this year ({{ date | datePart('y') }})</a></li>
+            </ul>
+        </nav>
+    </div>
+</section>

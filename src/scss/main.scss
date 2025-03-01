@@ -1,9 +1,11 @@
 @use "_reset.css";
+@use "prism.css";
 @use "typography";
 @use "components";
 @use "variables" as *;
 @use "icons";
 @use "utils";
+@use "blog";
 @use "base";
 
 .content {
@@ -15,7 +17,7 @@
 
     @media(max-width: $width-tablet) {
         margin-top: 1em;
-        text-align:justify;
+        text-align: justify;
     }
 }
 
@@ -63,3 +65,4 @@
 
 .professional-info {
 }
+

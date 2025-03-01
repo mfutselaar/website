@@ -7,13 +7,25 @@ const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-
 const day = String(today.getDate()).padStart(2, '0');
 const dateStr = `${year}-${month}-${day}`;
 
-const filename = `./src/blog/${dateStr}.md`;
+const filename = `./src/_posts/${dateStr}.md`;
 const content = `---
-title: Your Post Title
+layout: post.njk # Don't touch
+title: 
 date: ${dateStr}
-tags: blog
+tags:
+#  - coding
+#  - php
+#  - c-sharp
+#  - cpp
+#  - c
+#  - personal
+#  - photography
+#previewLimit: 1  # Change to the number of paragraphs you want to display in the small component
+#excerpt: |
+#   Some excerpt
+permalink: "{{ title | createPath(date) }}" # Don't touch dos
 ---
-Your content here...
+Content!
 `;
 fs.writeFileSync(filename, content, "utf8");
 
