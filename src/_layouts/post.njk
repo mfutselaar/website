@@ -8,6 +8,14 @@ layout: base.njk
                 <h3>Blog - {{ title }}</h3>
                 <div class="text-content">
                     {{ content | safe }}
+                    <a name="comments" />
+                    <script src="https://utteranc.es/client.js"
+                        repo="mfutselaar/website"
+                        issue-term="pathname"
+                        theme="github-dark"
+                        crossorigin="anonymous"
+                        async>
+                    </script>
                 </div>
             </article>
             <div class="information-block">
