@@ -223,6 +223,7 @@ export default async function (eleventyConfig) {
     eleventyConfig.addCollection("tags", function (collectionApi) {
         const posts = collectionApi.getFilteredByGlob("src/_posts/*.md")
         const tags = new Set()
+        console.log(posts)
         for (const post of posts) {
             if (post.data.tags) {
                 post.data.tags.forEach(tag => tags.add(tag))
