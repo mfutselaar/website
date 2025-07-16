@@ -21,10 +21,11 @@ permalink: "/blog/{% if pagination.pageNumber > 0 %}page-{{ pagination.pageNumbe
                 <div class="text-content">
                     {% if pagination.pageNumber > 0 or doExcerpt == true %}
                         {{ post | excerpt | safe }}
-                        <a href="{{ post.url }}">Continue reading &raquo;</a>
+                        <a href="{{ post.url }}">Continue reading and/or comment &raquo;</a>
                     {% else %}
                         {{ post.content | safe }}
                         {% set doExcerpt = true %}
+                        <a href="{{ post.url }}#comments">Add comment &raquo;</a>
                     {% endif %}
                 </div>
             </article>
