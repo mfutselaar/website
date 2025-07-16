@@ -1,0 +1,132 @@
+@use "variables" as *;
+
+.singular-blog-navigation {
+    text-align: left !important;
+
+    li:first-child {
+        margin-bottom: 2em;
+
+        &:before {
+            content: "« ";
+        }
+    }
+
+    li:not(:first-child) {
+        &:before {
+            content: "• ";
+        }
+    }
+}
+
+.blog {
+    .blog-entry {
+        background: $color-black-4;
+        padding: 1em;
+        margin-bottom: 1em;
+        overflow: hidden;
+
+        .blog-entry-header {
+            h3 {
+                margin-bottom: 0 !important;
+            }
+
+            small {
+                position: relative;
+                top: -.5em;
+            }
+        }
+    }
+
+    @media(max-width: $width-tablet) {
+        .blog-entry-image {
+            width: 256px;
+
+            &.small {
+                width: 128px;
+            }
+        }
+    }
+
+    @media(min-width: $width-tablet) {
+        .blog-entry-image {
+            width: 512px;
+
+            &.small {
+                width: 256px;
+            }
+        }
+    }
+
+    @media(max-width: $width-desktop) {
+        .wrapper {
+            grid-template-columns: 1fr !important;
+            grid-template-rows: auto auto;
+
+            .information-block {
+                order: -1;
+                text-align: left !important;
+            }
+        }
+    }
+
+    .wrapper {
+        display: grid;
+        align-items: start;
+        grid-template-columns: 1fr 30em;
+        gap: 2em;
+
+        .information-block {
+            padding: 1em;
+            background-color: $color-black-2;
+            text-align: right;
+
+            .tags,
+            .reading-time,
+            .date {
+                margin-bottom: 1em;
+            }
+
+            .source-icon {
+                width: 1em;
+                height: 1em;
+                color: $color-orange-2;
+                margin-top: -.1em;
+            }
+
+            small {
+                display: block;
+                margin-bottom: 1em;
+                font-style: italic;
+            }
+
+            ul {
+                &.tags {
+                    dispay: flex;
+                    align-content: flex-end;
+                    align-items: center;
+
+                    li {
+                        display: inline-block;
+
+                        &:first-child {
+                            color: $color-orange-2;
+                        }
+
+                        a {
+                            background-color: $color-black-1;
+                            border-radius: 25%;
+                            padding: .3em .7em;
+                            font-variant: small-caps;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    nav {
+        margin-top: 10em;
+        text-align: center;
+    }
+}

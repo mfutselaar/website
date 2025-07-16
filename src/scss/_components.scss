@@ -100,3 +100,47 @@ a {
         color: $color-green-2 !important
     }
 }
+
+nav {
+    @media(max-width: $width-desktop) {
+        &.nav-blog-footer {
+            width: 100% !important;
+        }
+    }
+
+    &.nav-blog-footer {
+        width: 70em;
+    }
+}
+
+ul {
+    display: inline-block;
+
+    &.bullet-list {
+        li {
+            line-height: 2em;
+
+            &:before {
+                content: "* ";
+                opacity: 1 !important;
+                color: $color-red;
+            }
+
+            color: $color-gray-2;
+        }
+    }
+}
+
+/** same styling as prism ``` block **/
+q {
+    background-color:hsla(24,20%,50%,.4);
+    color:#f4f1ef;
+    font:bold 65%/1.5;
+    padding: .1em;
+    &:before {
+        content: "`";
+    }
+    &:after {
+        content: "`";
+    }
+}

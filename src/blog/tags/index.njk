@@ -1,0 +1,64 @@
+---
+layout: base.njk
+pagination:
+  data: collections.tags
+  size: 1
+  alias: tag
+  addAllPagesToCollection: true
+permalink: "blog/tags/{{ tag }}/index.html"
+---
+<section class="content blog">
+    <div class="text-block">
+        <h2>Blog - All posts tagged with &ldquo;{{ tag | translateTag }}&rdquo;</h2>
+        {% for post in collections.blogPosts %}
+        {% if tag in post.data.tags %}
+        <div class="wrapper">
+            <article class="blog-entry">
+                <a href="{{ post.url }}">
+                    <h3>{{ post.data.title }}</h3>
+                </a>
+                <div class="text-content">
+                    {{ post | excerpt | safe }}
+                    <a href="{{ post.url }}">Continue reading &raquo;</a>
+                </div>
+            </article>
+            <div class="information-block">
+                {% if post.data.tags %}
+                <ul class="tags">
+                    <li>Tags:</li>
+                    {% for tag in post.data.tags %}
+                    <li><a href="/blog/tags/{{ tag }}">{{ tag | translateTag }}</a></li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <div class="date">
+                    <span class="text-orange-2">Date:</span>
+                    <time class="text-opacity-50">{{ post.date | dateReadable('d') }}</time>
+                </div>
+                <div class="reading-time">
+                    <span class="text-orange-2">Reading time:</span>
+                    <span class="text-opacity-50">{{ post.content | readingTime }}</span>
+                </div>
+                <div class="github-source">
+                    <span class="source-icon mdi source-branch"></span> <span><a
+                        href="https://github.com/mfutselaar/website/tree/main/src{{ post.data.origin }}">View on GitHub</a></span>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        <nav class="nav-blog-footer">
+            <p>
+                {% if pagination.previousPageHref %}
+                <a href="{{ pagination.previousPageHref }}">Previous page</a>
+                {% endif %}
+                {% if pagination.nextPageHref %}
+                <a href="{{ pagination.nextPageHref }}">Next page</a>
+                {% endif %}
+            </p>
+            <p>
+                <a href="/blog">Index</a>
+            </p>
+        </nav>
+    </div>
+</section>

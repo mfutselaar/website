@@ -1,0 +1,64 @@
+---
+layout: base.njk
+pagination:
+  data: collections.blogPosts
+  size: 1
+  alias: posts
+  addAllPagesToCollection: true
+permalink: "/blog/{% if pagination.pageNumber > 0 %}page-{{ pagination.pageNumber + 1 }}/{% endif %}index.html"
+---
+<section class="content blog">
+    <div class="text-block">
+        <h2>Blog</h2>
+        <p>Sometimes I have things to say, here you'll find a list of all my thoughts I wanted to share with you.</p>
+        {% set doExcerpt = false %}
+        {% for post in collections.blogPosts %}
+        <div class="wrapper">
+            <article class="blog-entry">
+                <a href="{{ post.data.url }}">
+                    <h3>{{ post.data.title }}</h3>
+                </a>
+                <div class="text-content">
+                    {% if pagination.pageNumber > 0 or doExcerpt == true %}
+                        {{ post | excerpt | safe }}
+                        <a href="{{ post.url }}">Continue reading &raquo;</a>
+                    {% else %}
+                        {{ post.content | safe }}
+                        {% set doExcerpt = true %}
+                    {% endif %}
+                </div>
+            </article>
+            <div class="information-block">
+                {% if post.data.tags %}
+                <ul class="tags">
+                    <li>Tags:</li>
+                    {% for tag in post.data.tags %}
+                    <li><a href="/blog/tags/{{ tag }}">{{ tag | translateTag }}</a></li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <div class="date">
+                    <span class="text-orange-2">Date:</span>
+                    <time class="text-opacity-50">{{ post.date | dateReadable('d') }}</time>
+                </div>
+                <div class="reading-time">
+                    <span class="text-orange-2">Reading time:</span>
+                    <span class="text-opacity-50">{{ post.content | readingTime }}</span>
+                </div>
+                <div class="github-source">
+                    <span class="source-icon mdi source-branch"></span> <span><a
+                        href="https://github.com/mfutselaar/website/tree/main/src{{ post.data.origin }}">View on GitHub</a></span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <nav class="nav-blog-footer">
+            {% if pagination.previousPageHref %}
+            <a href="{{ pagination.previousPageHref }}">Previous page</a>
+            {% endif %}
+            {% if pagination.nextPageHref %}
+            <a href="{{ pagination.nextPageHref }}">Next page</a>
+            {% endif %}
+        </nav>
+    </div>
+</section>

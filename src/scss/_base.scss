@@ -1,7 +1,14 @@
 @use "variables" as *;
 
-body {
+html, body {
     background-color: $color-black-4;
+    min-height: 100vh !important;
+}
+
+#main {
+    max-width: 1700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 header {
@@ -17,7 +24,7 @@ main {
 @media(min-width: $width-tablet) {
     header {
         padding: 1em 2em;
-        margin-top: 1em;
+        margin-top: 0 !important;
     }
 
     main {

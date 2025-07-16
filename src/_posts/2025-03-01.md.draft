@@ -1,0 +1,158 @@
+---
+layout: post.njk # Don't touch
+title: Setting up a blog for 11ty
+date: 2025-03-01
+tags:
+  - coding
+  - 11ty
+  - javascript
+#  - php
+#  - c-sharp
+#  - cpp
+#  - c
+#  - personal
+#  - photography
+previewLimit: 2
+#excerpt: |
+#   Some excerpt
+permalink: "{{ title | createPath(date) }}" # Don't touch dos
+---
+When I initially created a new website, I ran with the idea of using Silverstripe as the CMS. Eventually
+I decided against it and choose to look for an SSG, and came out on <a href="https://11ty.dev">11ty</a> as the best overall choice for myself.
+
+One of the reasons why I picked 11ty was that it was pretty extensible by just using Javascript. Since this was
+a language I was already familiar with I decided to look into building a blog that matched my requirements, which
+were pretty simple.
+
+<ul class="bullet-list bg-black-3 mt-2 mb-2 p-1">
+    <li>It needed to support tags</li>
+    <li>It needed to support a yearly, monthly and daily archive</li>
+    <li>It needed to create seo-friendly urls</li>
+</ul>
+
+Out of the box it is fairly easy to set up with the latter, just either create the directory tree yourself, eg:
+
+```tree
+    /blog
+    /blog/2025
+    /blog/2025/03
+    /blog/2025/03/01
+    /blog/2025/03/01/index.md
+```
+
+Create a markdown file called <q>2025-03-01.md</q>, which would generate a 2025-03-01/index.html, or lastly inside your markdown file, add <q>permalink: "/blog/2025/03/01/index.html"</q>.
+
+While this works to a certain degree, it does not enable tags and archiving. To achieve this I had to delve deeper into the 
+inner workings of 11ty.
+
+Since I am primarily a PHP and C# programmer and had little to no experience with 11ty, I had to cheat a little bit and used my free month of 
+Google's <a href="https://gemini.google.com">Gemini</a> to help me bootstrap this process. But alas, as with most LLM's, I reached the point where
+it was faster to just RTFM and do it myself pretty fast.
+
+However, as useless as it was in helping me debug its own code, it did generate a few useful bits. These were
+the collections that were required to generate the structures that I needed.
+
+<br><em>The collection to retrieve all my blogposts and order them in descending order:</em>
+```javascript
+eleventyConfig.addCollection("blogPosts", function (collectionApi) {
+    return collectionApi.getFilteredByGlob("src/_posts/*.md").sort((a, b) => {
+        return new Date(b.date) - new Date(a.date)
+    }).map(item => {
+        // Calculate the permalink and assign it to item.data.url
+        item.data.url = createPath(item.data.title, item.data.date, item.data.date)
+
+        return item
+    })
+})
+```
+<em>The collection to retrieve all the years
+```javascript
+eleventyConfig.addCollection("postsByYear", function (collectionApi) {
+    const posts = collectionApi.getFilteredByGlob("src/_posts/*.md")
+    const years = new Set()
+    for (const post of posts) {
+        years.add(post.data.date.getFullYear())
+    }
+
+    const yearCollections = {}
+    for (const year of years) {
+        yearCollections[year] = posts.filter(post => {
+            return post.data.date.getFullYear() === year
+        })
+    }
+
+    return yearCollections
+})
+```
+This function iterates through the post directory and generates a flat array/collection containing  
+
+<em>The collection to retrieve all the months per year:</em>
+```javascript
+eleventyConfig.addCollection("postsByYearMonth", function (collectionApi) {
+    const posts = collectionApi.getFilteredByGlob("src/_posts/*.md")
+    const yearMonths = new Set()
+
+    for (const post of posts) {
+        const month = post.data.date.getMonth() + 1
+        const year = post.data.date.getFullYear()
+        yearMonths.add(`${year}-${month}-01`)
+    }
+
+    const monthCollections = {}
+    for (const yearMonth of yearMonths) {
+        monthCollections[yearMonth] = posts.filter(post => {
+            const month = post.data.date.getMonth() + 1
+            const year = post.data.date.getFullYear()
+            return `${year}-${month}-01` === yearMonth
+
+        })
+    }
+
+    return monthCollections
+})
+```
+<em>The collection to retrieve all the days in the months per year:</em>
+```javascript
+eleventyConfig.addCollection("postByYearMonthDays", function (collectionApi) {
+    const posts = collectionApi.getFilteredByGlob("src/_posts/*.md")
+    const yearMonthDays = new Set()
+
+    for (const post of posts) {
+        const month = post.data.date.getMonth() + 1
+        const year = post.data.date.getFullYear()
+        const day = post.data.date.getDate()
+        yearMonthDays.add(`${year}-${month}-${day}`)
+    }
+
+    const dayCollections = {}
+    for (const yearMonthDay of yearMonthDays) {
+        dayCollections[yearMonthDay] = posts.filter(post => {
+            const month = post.data.date.getMonth() + 1
+            const year = post.data.date.getFullYear()
+            const day = post.data.date.getDate()
+            return `${year}-${month}-${day}` === yearMonthDay
+        })
+    }
+
+    return dayCollections
+})
+```
+<em>And lastly, all tags in a collection:</em>
+```javascript
+eleventyConfig.addCollection("tags", function (collectionApi) {
+    const posts = collectionApi.getFilteredByGlob("src/_posts/*.md")
+    const tags = new Set()
+    for (const post of posts) {
+        if (post.data.tags) {
+            post.data.tags.forEach(tag => tags.add(tag))
+        }
+    }
+    const tagCollections = {}
+    for (const tag of tags) {
+        tagCollections[tag] = posts.filter(post => post.data.tags && post.data.tags.includes(tag))
+    }
+
+    return tagCollections
+})
+```
+

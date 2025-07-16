@@ -1,0 +1,76 @@
+---
+layout: base.njk
+pagination:
+  data: collections.postsByYearMonth
+  size: 1
+  alias: timestamp
+  addAllPagesToCollection: true
+permalink: "blog/{{ timestamp | datePart('y') }}/{{ timestamp | datePart('m') }}/index.html"
+---
+<section class="content blog">
+    <div class="text-block">
+        <h2>Blog archive for {{ timestamp | dateReadable('m') }}</h2>
+
+        {% set year = timestamp | datePart('y') %}
+        {% set month = timestamp | datePart('m') %}
+        {% set day = "" %}
+
+        {% for post in collections.blogPosts %}
+            {% set postYear = post.data.date | datePart('y') %}
+            {% set postMonth = post.data.date | datePart('m') %}
+            {% if postYear == year and postMonth == month %}
+                {% if day != post.date | dateReadable('d_long') %}
+                {% set day = post.date | dateReadable('d_long') %}
+                    <br>
+                    <h3>{{ day }}</h3>
+                {% endif %}
+                <div class="wrapper">
+                <article class="blog-entry">
+                    <a href="{{ post.url }}">
+                        <h3>{{ post.data.title }}</h3>
+                    </a>
+                    <div class="text-content">
+                        {{ post | excerpt | safe }}
+                        <a href="{{ post.url }}">Continue reading &raquo;</a>
+                    </div>
+                </article>
+                <div class="information-block">
+                    {% if post.data.tags %}
+                    <ul class="tags">
+                        <li>Tags:</li>
+                        {% for tag in post.data.tags %}
+                            <li><a href="/blog/tags/{{ tag }}">{{ tag | translateTag }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <div class="date">
+                        <span class="text-orange-2">Date:</span>
+                        <time class="text-opacity-50">{{ post.date | dateReadable('d') }}</time>
+                    </div>
+                    <div class="reading-time">
+                        <span class="text-orange-2">Reading time:</span>
+                        <span class="text-opacity-50">{{ post.content | readingTime }}</span>
+                    </div>
+                    <div class="github-source">
+                        <span class="source-icon mdi source-branch"></span> <span><a
+                            href="https://github.com/mfutselaar/website/tree/main/src{{ post.data.origin }}">View on GitHub</a></span>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+        <nav class="nav-blog-footer">
+            <p>
+            {% if pagination.previousPageHref %}
+                <a href="{{ pagination.previousPageHref }}">Previous month</a>
+            {% endif %}
+            {% if pagination.nextPageHref %}
+                <a href="{{ pagination.nextPageHref }}">Next month</a>
+            {% endif %}
+            </p>
+            <p>
+                <a href="/blog">Index</a> | <a href="/blog/{{ timestamp | datePart('y') }}">{{ timestamp | datePart('y') }}</a>
+            </p>
+        </nav>
+    </div>
+</section>
