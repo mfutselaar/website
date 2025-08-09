@@ -132,7 +132,7 @@ ul {
 }
 
 /** same styling as prism ``` block **/
-q {
+code:not([class]), q {
     background-color:hsla(24,20%,50%,.4);
     color:#f4f1ef;
     font:bold 65%/1.5;
