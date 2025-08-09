@@ -133,8 +133,8 @@ ul {
 
 /** same styling as prism ``` block **/
 code:not([class]), q {
-    background-color:hsla(24,20%,50%,.4);
-    color:#f4f1ef;
+    background-color: #ffd44d;
+    color:#706a48;
     font:bold 65%/1.5;
     padding: .1em;
     &:before {
