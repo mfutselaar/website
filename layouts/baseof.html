@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ .Site.Title }}</title>
-    {{ $highlight := css.ChromaStyles (dict "targetPath" "css/highlight.css") | minify }}
     <link rel="stylesheet" href="{{ $highlight.RelPermalink }}">
     {{ $css := resources.Get "scss/main.scss" | css.Sass (dict "transpiler" "dartsass" "targetPath" "css/main.css" "outputStyle" "compressed") }}
     <link rel="stylesheet" href="{{ $css.RelPermalink }}">
