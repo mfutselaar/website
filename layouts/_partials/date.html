@@ -1,0 +1,6 @@
+{{- $day := .Day -}}
+{{- $suffix := "th" -}}
+{{- if or (lt $day 11) (gt $day 13) -}}
+    {{- $suffix = index (dict "1" "st" "2" "nd" "3" "rd") (string (mod $day 10)) | default "th" -}}
+{{- end -}}
+{{- return (printf "%s %d%s %s" (.Format "Monday, January") $day $suffix (.Format "2006")) -}}

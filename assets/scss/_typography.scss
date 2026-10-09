@@ -1,0 +1,80 @@
+@use "variables" as *;
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+* {
+    font-family: "JetBrains Mono", monospace;
+}
+
+h1, h2, h3, h4, h5, h6, p, li, td, th {
+    color: $color-white;
+}
+
+h1 {
+    font-weight: lighter;
+}
+
+h2 {
+    font-weight: normal;
+    color: $color-gray-3;
+    margin-bottom: .2em;
+}
+
+h3 {
+    color: $color-violet;
+    opacity: .8;
+    font-weight: normal;
+}
+
+h4 {
+    color: $color-violet;
+    opacity: .7;
+    font-weight: normal;
+}
+
+p {
+    font-size: 1.5em;
+    margin-bottom: 1rem;
+}
+
+@media(min-width: $width-tablet) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 2.5rem;
+    }
+
+    h3 {
+        font-size: 2rem;
+    }
+
+    h4 {
+        font-size: 1.5rem;
+    }
+}
+
+/** Fullscreen **/
+@media(min-width: $width-desktop) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+        margin-top: 0;
+        margin-bottom: 0.70em;
+        font-weight: bold;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    h4 {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+    }
+}

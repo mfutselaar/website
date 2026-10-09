@@ -1,0 +1,22 @@
+<div class="information-block">
+    {{ with .GetTerms "tags" }}
+        <ul class="tags">
+            <li>Tags:</li>
+            {{ range . }}<li><a href="{{ .RelPermalink }}">{{ partial "tag-label.html" .Data.Term }}</a></li>{{ end }}
+        </ul>
+    {{ end }}
+    <div class="date">
+        <span class="text-orange-2">Date:</span>
+        <time class="text-opacity-50 text-orange" datetime="{{ .Date.Format "2006-01-02" }}">{{ partial "date.html" .Date }}</time>
+    </div>
+    <div class="reading-time">
+        <span class="text-orange-2">Reading time:</span>
+        <span class="text-opacity-50 text-orange">{{ .ReadingTime }} min read</span>
+    </div>
+    {{ with .File }}
+        <div class="github-source">
+            <span class="source-icon mdi source-branch"></span>
+            <span><a href="{{ printf "%s%s" site.Params.sourceURL .Path }}">View on GitHub</a></span>
+        </div>
+    {{ end }}
+</div>

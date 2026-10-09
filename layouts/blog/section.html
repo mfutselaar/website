@@ -1,0 +1,19 @@
+{{ define "main" }}
+<section class="content blog">
+    <div class="text-block">
+        <h2>Blog</h2>
+        <p>Sometimes I have things to say, here you'll find a list of all my thoughts I wanted to share with you.</p>
+        {{ $posts := where .Site.RegularPages "Section" "blog" }}
+        {{ $pager := .Paginate $posts.ByDate.Reverse }}
+        {{ range $index, $post := $pager.Pages }}
+            {{ partial "post-entry.html" (dict "page" $post "full" (and (eq $pager.PageNumber 1) (eq $index 0))) }}
+        {{ end }}
+        {{ if gt $pager.TotalPages 1 }}
+            <nav class="nav-blog-footer">
+                {{ with $pager.Prev }}<a href="{{ .URL }}">Previous page</a>{{ end }}
+                {{ with $pager.Next }}<a href="{{ .URL }}">Next page</a>{{ end }}
+            </nav>
+        {{ end }}
+    </div>
+</section>
+{{ end }}

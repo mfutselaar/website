@@ -1,0 +1,34 @@
+{{/* Build date archives from the YAML front matter of the Markdown posts.
+     Archive draft/date fields let Hugo apply the same publication rules as posts. */}}
+{{ $archives := newScratch }}
+{{ $archives.Set "entries" dict }}
+{{ range resources.Match "blog-source/*.md" }}
+    {{ if ne (path.Base .Name) "_index.md" }}
+        {{ $frontmatter := index (split .Content "---") 1 | transform.Unmarshal (dict "format" "yaml") }}
+        {{ $date := time.AsTime $frontmatter.date }}
+        {{ $draft := $frontmatter.draft | default false }}
+        {{ range $kind, $format := dict "year" "2006" "month" "2006/01" "day" "2006/01/02" }}
+            {{ $path := $date.Format $format }}
+            {{ $existing := index ($archives.Get "entries") $path }}
+            {{/* Prefer a non-draft post, then the earliest publication date. */}}
+            {{ if or (not $existing) (and $existing.draft (not $draft)) (and (eq $existing.draft $draft) ($date.Before $existing.date)) }}
+                {{ $archives.SetInMap "entries" $path (dict "kind" $kind "format" $format "date" $date "draft" $draft) }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+{{ range $path, $archive := $archives.Get "entries" }}
+    {{ $label := $archive.date.Format "2006" }}
+    {{ if eq $archive.kind "month" }}{{ $label = $archive.date.Format "January, 2006" }}{{ end }}
+    {{ if eq $archive.kind "day" }}{{ $label = partial "date.html" $archive.date }}{{ end }}
+    {{ $.AddPage (dict
+        "path" $path
+        "kind" "section"
+        "type" "blog"
+        "layout" "archive"
+        "title" (printf "Blog archive for %s" $label)
+        "draft" $archive.draft
+        "dates" (dict "date" $archive.date)
+        "params" (dict "archiveKind" $archive.kind "archiveFormat" $archive.format "archiveKey" $path)
+    ) }}
+{{ end }}

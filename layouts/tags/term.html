@@ -1,0 +1,11 @@
+{{ define "main" }}
+<section class="content blog">
+    <div class="text-block">
+        <h2>Blog - All posts tagged with &ldquo;{{ partial "tag-label.html" .Data.Term }}&rdquo;</h2>
+        {{ range .RegularPages.ByDate.Reverse }}
+            {{ partial "post-entry.html" (dict "page" . "full" false) }}
+        {{ end }}
+        <nav class="nav-blog-footer"><a href="/blog/">Index</a></nav>
+    </div>
+</section>
+{{ end }}

@@ -1,0 +1,19 @@
+.blog .wrapper > article {
+    min-width: 0;
+}
+
+pre {
+    padding: 12px;
+    margin: .5em 0 1.5em;
+    overflow-x: auto;
+    border: 1px solid #000;
+    border-radius: 5px;
+    text-align: left;
+    tab-size: 4;
+
+    &, code, span {
+        font-family: Menlo, Monaco, "Courier New", monospace;
+        font-size: 15px;
+        line-height: 1.5;
+    }
+}

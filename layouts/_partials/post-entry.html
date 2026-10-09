@@ -1,0 +1,16 @@
+{{ $post := .page }}
+<div class="wrapper">
+    <article class="blog-entry">
+        <a href="{{ $post.RelPermalink }}"><h3>{{ $post.Title }}</h3></a>
+        <div class="text-content">
+            {{ if .full }}
+                {{ $post.Content }}
+                <a href="{{ $post.RelPermalink }}#comments">Add comment &raquo;</a>
+            {{ else }}
+                {{ partial "excerpt.html" $post }}
+                <a href="{{ $post.RelPermalink }}">Continue reading and/or comment &raquo;</a>
+            {{ end }}
+        </div>
+    </article>
+    {{ partial "post-information.html" $post }}
+</div>

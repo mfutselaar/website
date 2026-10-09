@@ -1,0 +1,41 @@
+{{ define "main" }}
+<section class="content blog">
+    <div class="text-block">
+        <h2>{{ .Title }}</h2>
+        {{ $archive := . }}
+        {{ $heading := "" }}
+        {{ range (where .Site.RegularPages "Section" "blog").ByDate.Reverse }}
+            {{ if eq (.Date.Format $archive.Params.archiveFormat) $archive.Params.archiveKey }}
+                {{ $nextHeading := "" }}
+                {{ if eq $archive.Params.archiveKind "year" }}{{ $nextHeading = .Date.Format "January" }}{{ end }}
+                {{ if eq $archive.Params.archiveKind "month" }}{{ $nextHeading = partial "date.html" .Date }}{{ end }}
+                {{ if ne $nextHeading $heading }}
+                    <br><h3>{{ $nextHeading }}</h3>
+                    {{ $heading = $nextHeading }}
+                {{ end }}
+                {{ partial "post-entry.html" (dict "page" . "full" false) }}
+            {{ end }}
+        {{ end }}
+        <nav class="nav-blog-footer">
+            {{ $archives := (where .Site.Pages "Params.archiveKind" .Params.archiveKind).ByDate }}
+            {{ range $index, $page := $archives }}
+                {{ if eq $page.RelPermalink $archive.RelPermalink }}
+                    <p>
+                        {{ if gt $index 0 }}
+                            {{ with index $archives (sub $index 1) }}<a href="{{ .RelPermalink }}">Previous {{ $archive.Params.archiveKind }}</a>{{ end }}
+                        {{ end }}
+                        {{ if lt $index (sub (len $archives) 1) }}
+                            {{ with index $archives (add $index 1) }}<a href="{{ .RelPermalink }}">Next {{ $archive.Params.archiveKind }}</a>{{ end }}
+                        {{ end }}
+                    </p>
+                {{ end }}
+            {{ end }}
+            <p>
+                <a href="/blog/">Index</a>
+                {{ if eq .Params.archiveKind "day" }} | <a href="/blog/{{ .Date.Format "2006/01" }}/">{{ .Date.Format "January, 2006" }}</a>{{ end }}
+                {{ if ne .Params.archiveKind "year" }} | <a href="/blog/{{ .Date.Format "2006" }}/">{{ .Date.Format "2006" }}</a>{{ end }}
+            </p>
+        </nav>
+    </div>
+</section>
+{{ end }}

@@ -1,0 +1,3 @@
+<li class="nav-item"><a href="/" class="nav-link{{ if .IsHome }} active{{ end }}">About me</a></li>
+<li class="nav-item"><a href="/skills" class="nav-link{{ if eq .RelPermalink "/skills/" }} active{{ end }}">Skills</a></li>
+<li class="nav-item"><a href="/blog/" class="nav-link{{ if hasPrefix .RelPermalink "/blog/" }} active{{ end }}">Blog</a></li>

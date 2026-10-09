@@ -1,0 +1,8 @@
+{{- if isset .Params "excerpt" -}}
+    {{- .Params.excerpt | markdownify -}}
+{{- else -}}
+    {{- $paragraphs := findRE `(?s)<p(?:\s[^>]*)?>.*?</p>` .Content -}}
+    {{- range first (.Params.previewLimit | default 1) $paragraphs -}}
+        {{- . | safeHTML -}}
+    {{- end -}}
+{{- end -}}

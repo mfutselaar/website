@@ -1,0 +1,80 @@
+@use "_reset.css";
+@use "code";
+@use "typography";
+@use "components";
+@use "variables" as *;
+@use "icons";
+@use "utils";
+@use "blog";
+@use "base";
+
+.hide-on-small-devices {
+    display: none;
+
+    @media(min-width: $width-desktop) {
+        display: inline !important;
+    }
+}
+
+.content {
+    @media(min-width: $width-tablet) {
+        h2:first-child {
+            margin-top: -.25em;
+        }
+    }
+
+    @media(max-width: $width-tablet) {
+        margin-top: 1em;
+        text-align: justify;
+    }
+}
+
+.page {
+    display: block;
+    margin-top: 0;
+}
+
+.profile-photo {
+    float: left;
+    width: 128px;
+    max-width: 100%;
+    height: auto;
+    margin: 0 1em 1em 0;
+
+    @media(min-width: $width-tablet) {
+        width: 240px;
+        margin-right: 1.5em;
+    }
+
+    @media(min-width: $width-desktop) {
+        width: 320px;
+    }
+}
+
+.skill-collection {
+    display: grid;
+    align-self: start;
+    margin-top: 3rem;
+
+    @media(min-width: $width-tablet) {
+        grid-template-columns: 50% 50%;
+    }
+
+    @media(min-width: $width-desktop) {
+        grid-template-columns: 33% 33% 33%;
+    }
+
+    .skill-block {
+        margin-bottom: 2em;
+
+        h4 {
+            margin-top: 1em;
+        }
+
+        .skills {
+            font-size: 1.5em;
+            color: $color-yellow;
+            line-height: 2em;
+        }
+    }
+}

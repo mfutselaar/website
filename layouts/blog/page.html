@@ -1,0 +1,30 @@
+{{ define "main" }}
+<section class="content blog">
+    <div class="text-block">
+        <div class="wrapper">
+            <article>
+                <h3>Blog - {{ .Title }}</h3>
+                <div class="text-content">{{ .Content }}</div>
+            </article>
+            {{ partial "post-information.html" . }}
+        </div>
+        <div class="wrapper" id="comments">
+            <script src="https://utteranc.es/client.js"
+                repo="{{ .Site.Params.commentsRepo }}"
+                issue-term="pathname"
+                theme="github-dark"
+                crossorigin="anonymous"
+                async>
+            </script>
+        </div>
+        <nav class="singular-blog-navigation">
+            <ul>
+                <li><a href="/blog/">Go back to the blog index</a></li>
+                <li><a href="/blog/{{ .Date.Format "2006/01/02" }}/">More from this date ({{ partial "date.html" .Date }})</a></li>
+                <li><a href="/blog/{{ .Date.Format "2006/01" }}/">More from this month ({{ .Date.Format "January, 2006" }})</a></li>
+                <li><a href="/blog/{{ .Date.Format "2006" }}/">More from this year ({{ .Date.Format "2006" }})</a></li>
+            </ul>
+        </nav>
+    </div>
+</section>
+{{ end }}

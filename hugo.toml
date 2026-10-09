@@ -1,0 +1,46 @@
+baseURL = 'https://matttt.nl/'
+locale = 'en-us'
+title = 'Mathijs Futselaar - Sr. (Web)Developer'
+timeZone = 'Europe/Amsterdam'
+publishDir = 'build'
+disableKinds = ['RSS']
+
+[params]
+available = false
+sourceURL = 'https://github.com/mfutselaar/website/blob/main/content/'
+commentsRepo = 'mfutselaar/website'
+
+[pagination]
+pagerSize = 10
+
+[permalinks.page]
+blog = '/blog/:year/:month/:day/:slug/'
+
+[permalinks.taxonomy]
+tags = '/blog/tags/'
+
+[permalinks.term]
+tags = '/blog/tags/:slug/'
+
+[taxonomies]
+tag = 'tags'
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[markup.highlight]
+codeFences = true
+noClasses = false
+style = 'kanagawa-dragon'
+tabWidth = 4
+lineNos = true
+lineNumbersInTable = false
+
+# Expose post sources to the content adapter so archives update with the posts.
+[[module.mounts]]
+source = 'assets'
+target = 'assets'
+
+[[module.mounts]]
+source = 'content/blog'
+target = 'assets/blog-source'

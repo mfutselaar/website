@@ -1,5 +1,8 @@
-/build
-/node_modules
-/.idea
+/build/
+/resources/
+/node_modules/
+/.hugo_build.lock
+/.idea/
+/hugo
 .DS_Store
-/src/css
+__pycache__/
