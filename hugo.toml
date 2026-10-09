@@ -2,7 +2,7 @@ baseURL = 'https://matttt.nl/'
 locale = 'en-us'
 title = 'Mathijs Futselaar - Sr. (Web)Developer'
 timeZone = 'Europe/Amsterdam'
-publishDir = 'build'
+publishDir = 'public'
 disableKinds = ['RSS']
 
 [params]
