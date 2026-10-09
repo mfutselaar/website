@@ -68,7 +68,7 @@ title: Skills
             <div class="skill-block">
                 <h3>Desktop and CLI development</h3>
                 <ul class="skills">
-                    <li>.NET</li>
+                    <li>C#</li>
                     <li>C++</li>
                     <li>Golang</li>
                     <li>Bash/ZSH scripting</li>
