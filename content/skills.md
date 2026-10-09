@@ -22,6 +22,9 @@ title: Skills
                     <li>Laravel <span class="text-red">*</span></li>
                     <li>Symfony</li>
                     <li>Magento</li>
+                    <li>VueJS</li>
+                    <li>NodeJS</li>
+                    <li>Electron</li>
                 </ul>
             </div>
             <div class="skill-block">
@@ -87,6 +90,7 @@ title: Skills
                     <li>Pascal (Turbo, Borland, Delphi)</li>
                     <li>Java</li>
                     <li>Rust</li>
+                    <li>Python</li>
                 </ul>
             </div>
         </div>
